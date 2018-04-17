@@ -1,0 +1,439 @@
+<div id='periodical-popup' class="custom-popup" style="display:none">
+    <div class="row custom-popup-header">
+        <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center'>
+                <span class="highlight-text">
+                    {{dataService.get_selected_period()['header_title']}}
+                </span> 
+        </div>
+    </div>
+    <hr>
+
+    <div class='row'>
+        <div class='section-header-label'>
+            <div class='section-label text-left'>
+                <span style="float:left"> {{'Category'|translate}}: </span>
+            </div>
+            <div class='section-date text-right'>
+                <span style="float:left" class="highlight-info">
+                    {{dataService.get_selected_period()['category']}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='section-header-label'>
+            <div class='section-label text-left'>
+                <span style="float:left"> {{'Start'|translate}}: </span>
+            </div>
+            <div class='section-date text-right'>
+                <span style="float:left" class="highlight-info">
+                    {{dataService.get_selected_period()['start']}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class='row'>
+            <div class='section-header-label'>
+                <div class='section-label text-left'>
+                    <span style="float:left"> {{'End'|translate}}: </span>
+                </div>
+                <div class='section-date text-right'>
+                    <span style="float:left" class="highlight-info">
+                        {{dataService.get_selected_period()['end']}}
+                    </span>
+                </div>
+            </div>
+    </div>
+
+</div>
+
+
+<div id='tripPopup' class="custom-popup" style="display:none">
+    <div class="row custom-popup-header">
+        <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center'>
+                <span class="highlight-text">
+                    {{dataService.getCurrentTripInfo()['name']}}
+                </span> 
+                <span style="float:right">
+                        <img  src="{{dataService.getIcon()['User']}}" /> <span>{{dataService.getCurrentTripInfo()['pax']}}</span> 
+                </span>
+        </div>
+    </div>
+
+    <hr>
+    
+    <div class='row'>
+        <div class='section-header-label'>
+            <div class='section-label text-left'>
+                <span style="float:left"> {{'From'|translate}}: </span>
+            </div>
+            <div class='section-date text-right'>
+                <span style="float:right" class="highlight-info">{{dataService.getCurrentTripInfo()['time_b2'] | date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+        </div>
+        <div class='section-info text-left'>
+                <span><strong>{{dataService.getCurrentTripInfo()['loc_from']}}</strong></span>
+        </div>
+    </div>
+
+    <div class='row'>
+            <div class='section-header-label'>
+                <div class='section-label text-left'>
+                    <span style="float:left"> {{'To'|translate}}: </span>
+                </div>
+                <div class='section-date text-right'>
+                    <span style="float:right" class="highlight-info">{{dataService.getCurrentTripInfo()['time_c1'] | date:'dd/MM/yyyy HH:mm'}}</span>
+                </div>
+            </div>
+            <div class='section-info text-left'>
+                    <span><strong>{{dataService.getCurrentTripInfo()['loc_to']}}</strong></span>
+            </div>
+    </div>
+
+</div>
+
+<div class="overlay-panel"  (click)='hideOverlayDisplay()' [ngStyle]="{'display': dataService.getOverlayDisplay()}">
+    <img class='loader-gif' src="{{dataService.getIcon()['Loading']}}" />    
+</div>
+
+<!-- (wheel)="zoomoption($event)" -->
+<div id='panel-time-schedule' class="panel-timeline" >
+    <div class='panel-planned'>
+        <div class="row custom-border panel-top-header">
+            <div class="panel-left row" >
+                <div class="row btn-custom-mode custom-picker toggle-icon" (click)="changeViewMode()">
+                    <img  src="{{dataService.getIcon()['Toggle']}}" />
+                    <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:calc(100% - 40px); font-size: 11px;
+                    line-height: 24px; color: #212529; font-weight: bold;"> {{viewMode|translate}}</div>
+                </div>
+            </div>
+            <div class="panel-right row" >
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-center" >
+                        <div class="input-group ngbdatepicker">
+                                <div class="btn-search-mode" (click)='onDateTraverse(false)'><img  src="{{dataService.getIcon()['LeftArrow']}}" /></div>
+                                <label class='date-view-text'>{{currentDate | date:'EEEE, d MMMM, y'}}</label>
+                                <div class="btn-search-mode" (click)='onDateTraverse(true)'><img  src="{{dataService.getIcon()['RightArrow']}}" /></div>
+                                <input hidden [(ngModel)]="ngbDateFormat" name="dp" (ngModelChange)="onDateChange($event, true)" [displayMonths]="1" [navigation]="" ngbDatepicker #d="ngbDatepicker">
+                                <div class="btn-search-mode calendar-icon" (click)="d.toggle()"> <img src="{{dataService.getIcon()['Calendar']}}"/></div>
+                        </div>
+                    </div>
+                    <div  class="region-time-format col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right">
+                        <div class="text-right" style="float:right; width:40px">
+                            <div class="region-settings">
+                                <img class="popup-selection"  src="{{dataService.getIcon()['Help']}}" (click)='show_settings()'/>
+                            </div>
+                            <div id='settingsPopUp' class="custom-popup" style="display:none">
+                                <div class='row'  >
+                                    <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                        <strong>Zoom Feature</strong>
+                                    </div>
+                                </div>
+                            
+                                <div class='row'  >
+                                    <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                        zoom-in:  Hold down “Shift” key and press “+”.
+                                    </div>
+                                    <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                        zoom-out:  Hold down “Shift” key and press “-”.
+                                    </div>
+                                    <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                        drag-left: shift + mouse left press &amp; traverse left.
+                                    </div>
+                                    <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                        drag-right: shift + mouse left press &amp; traverse right.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="float:right">
+                            <a href="javascript:void(0)" (click)="selectToday($event, 'hour', 24)" class="active">Today</a> 
+                            <a href="javascript:void(0)" (click)="onSelect($event,'hour', 12)" class="time-format">12 hours</a> 
+                            <a href="javascript:void(0)" (click)="onSelect($event, 'hour', 24)" class='time-format active'>24 hours</a> 
+                            <a href="javascript:void(0)" (click)="onSelect($event, 'hour', 48)" class="time-format">48 hours</a>
+                            <a href="javascript:void(0)" (click)="onSelect($event, 'week', 7)" class="time-format">Week</a>
+                        </div>
+                    </div>  
+            </div>
+        </div>
+                
+        <div class="row panel-timeline-header custom-border">
+            <!-- [ngStyle]="{'left': getVehicleTripLeft()}" -->
+            <div class="panel-left row" style="border-right:1px solid lightgrey; height:100%;" >
+                <div class="region-divider">
+                    <div class="btn-search-mode">
+                        <img  src="{{dataService.getIcon()['ArrowUpDeactive']}}" class="icon-top" (click)="dataService.setFilterToggle($event, false)"/>
+                        <img  src="{{dataService.getIcon()['ArrowDownActive']}}" class="icon-bottom" (click)="dataService.setFilterToggle($event, true)"/>
+                        <span style=" overflow: hidden; text-overflow: ellipsis;  white-space: nowrap; ">{{dataService.FilterType}}</span>
+                    </div>
+                </div>
+                <div class="region-divider">
+                    <div class="btn-search-mode filter-icon" >
+                        <img class="popup-selection"  src="{{dataService.getIcon()['Filter']}}" (click)='showVehicleFilter($event)'/>
+                        
+                        <div id="filterpopup_arrow"></div>
+
+                        <div id='vehicleTypePopUp' class="custom-popup vehicle-type-popup section-primary" style="display:none">
+                            <div class='row'  >
+                                <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                    <strong>{{'Bus Type' | translate}}</strong>
+                                </div>
+                            </div>
+                            <div class='row'  >
+                                <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left vehicle-popup-row-resize'>
+                                    <input type="checkbox" [checked]="true" (change)='selectAllVehicleType($event)' class="root"/> <span>All</span>
+                                </div>
+                            </div>
+                            <div class='row'  >
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left vehicle-popup-row-resize' *ngFor="let item of dataService.getVehicleTypes()">
+                                    <input type="checkbox" [checked]="true" class='vh-type-selector vehicletype' (change)='selectSingleVehicleType($event)' attr.data-vtype={{item.id}} /> <span>{{item.name}} </span>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class='row'  >
+                                <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                    <strong>{{'Trip Type' | translate}}</strong>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left vehicle-popup-row-resize' *ngFor="let item of dataService.getTripTypes()">
+                                        <input type="checkbox" [checked]="dataService.sync_trip_type(item.id)" class='trip-vh-selector'  attr.triptype={{item.id}}/> <span>{{item.name}}</span>
+                                </div>
+                            </div> 
+
+                            <hr>
+                            <div class='row'  >
+                                <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                    <strong>{{'Trip Category' | translate}}</strong>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left vehicle-popup-row-resize' *ngFor="let item of dataService.getTripCategory()">
+                                        <input type="checkbox" [checked]="dataService.sync_trip_cat(item)" class='trip-vh-cat-selector'  attr.trip-cat={{item}}/> <span>{{item}}</span>
+                                </div>
+                            </div> 
+                
+                            <hr>
+                            <div class='row'  >
+                                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left vehicle-popup-row-resize'> 
+                                    <input type="radio" name='trip-grp-vehicle' [checked]="true" (click)='vehicleTripGrouping("All")' /> <span>All</span>
+                                </div>
+                                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left vehicle-popup-row-resize'>
+                                    <input type="radio" name='trip-grp-vehicle' [checked]="false" (click)='vehicleTripGrouping("Assigned")' /> <span>Assigned</span>
+                                </div>
+                                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left vehicle-popup-row-resize'>
+                                    <input type="radio" name='trip-grp-vehicle' [checked]="false" (click)='vehicleTripGrouping("Unassigned")' /> <span>Unassigned</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class='row'  >
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                    <strong>{{'Search Garage' | translate}}</strong><br>
+                                    <input type="text" [(ngModel)]='filterArgsGarageLoc' class="custom-text-seach-box" placeholder="Search garage...." (keyup)='setGarageFilter()'/>
+                                </div>
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                    <strong>{{'Search Trip' | translate}}</strong><br>
+                                    <input type="text" [(ngModel)]='filterArgsVehicle' class="custom-text-seach-box" placeholder="Search vehicle...." (keyup)='setVehicleFilter()'/>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class='row'  >
+                                    <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                        <strong>{{'Search Trip' | translate}}</strong><br>
+                                        <input type="text" [(ngModel)]='filterArgsVehicelTrip' class="custom-text-seach-box" placeholder="Search trip...." (keyup)='setVehicleTripFilter()'/>
+                                    </div>
+                                    <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                        <strong>{{'Search Customer' | translate}}</strong><br>
+                                        <input type="text" [(ngModel)]='filterArgsVehicelCustomer' class="custom-text-seach-box" placeholder="Search customer...." (keyup)='setVehicleTripFilter()'/>
+                                    </div>
+                            </div>
+
+                            <div class='row'  >
+                                <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left search-btn-custom'>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="search_vehicle()">{{'Search' | translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id='driverTypePopUp' class="custom-popup driver-type-popup section-primary" style="display:none" tabindex="-1">
+                            <div class='row'>
+                                <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                    <strong>{{'Driver Category' | translate}}</strong>
+                                </div>
+                            </div>
+                            <div class='row'  >
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                    <input  type="checkbox" [checked]="true" (change)='selectAllDriverType($event)' class="root"/> <span>All</span>
+                                </div>
+                            </div>
+                            <div class='row'  >
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left driver-popup-row-resize' *ngFor="let item of dataService.getDriverCategory()">
+                                        <input type="checkbox" [checked]="true" class='drivertype' (change)='selectSingleDriverType($event)' attr.drivertype={{item.id}} /> <span>{{item.name}} </span>
+                                </div>
+                            </div>
+                        
+                            <!-- <hr>
+                            <div class='row'  >
+                                <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                    <strong>Availability</strong>
+                                </div>
+                            </div>
+                            <div class='row'  >
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                    <input type="checkbox" [checked]="true" class='driver-availability' availability='Free'/> <span>Free Drivers</span>
+                                </div>
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                    <input type="checkbox" [checked]="true" class='driver-availability' availability='Driving'/> <span>Driving Drivers</span>
+                                </div>
+                            </div> -->
+                            <hr>
+                            <div class='row'  >
+                                <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                    <strong>{{'Trip Type' | translate}}</strong>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left driver-popup-row-resize' *ngFor="let item of dataService.getTripTypes()">
+                                        <input type="checkbox" [checked]="dataService.sync_trip_type(item.id)" class='trip-dri-selector'  attr.triptype={{item.id}}/> <span>{{item.name}}</span>
+                                </div>
+                            </div> 
+
+                            <hr>
+                            <div class='row'  >
+                                <div class='btn-search-mode col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                    <strong>{{'Trip Category' | translate}}</strong>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left driver-popup-row-resize' *ngFor="let item of dataService.getTripCategory()">
+                                        <input type="checkbox" [checked]="dataService.sync_trip_cat(item)" class='trip-dri-cat-selector'  attr.trip-cat={{item}}/> <span>{{item}}</span>
+                                </div>
+                            </div> 
+
+                            <hr>
+                            <div class='row'  >
+                                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left driver-popup-row-resize'> 
+                                        <input type="radio" name='trip-grp-driver' [checked]="true" (click)='driverTripGrouping("All")' /> <span>All</span>
+                                    </div>
+                                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left driver-popup-row-resize'>
+                                        <input type="radio" name='trip-grp-driver' [checked]="false" (click)='driverTripGrouping("Assigned")' /> <span>Assigned</span>
+                                    </div>
+                                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left driver-popup-row-resize'>
+                                        <input type="radio" name='trip-grp-driver' [checked]="false" (click)='driverTripGrouping("Unassigned")' /> <span>Unassigned</span>
+                                    </div>
+                            </div>
+                            <hr>
+                            <div class='row'  > 
+                                <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                    <strong>{{'Search Driver' | translate}}</strong><br>
+                                    <input type="text" [(ngModel)]='filterArgsDriver' class="custom-text-seach-box" placeholder="Search driver...." (keyup)='setDriverFilter()'/>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class='row'  > 
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                    <strong>{{'Search Trip' | translate}}</strong><br>
+                                    <input type="text" [(ngModel)]='filterArgsDriverTrip' class="custom-text-seach-box" placeholder="Search trip...." (keyup)='setDriverTripFilter()'/>
+                                </div>
+                                <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left'>
+                                    <strong>{{'Search Customer' | translate}}</strong><br>
+                                    <input type="text" [(ngModel)]='filterArgsDriverCustomer' class="custom-text-seach-box" placeholder="Search customer...." (keyup)='setDriverTripFilter()'/>
+                                </div>
+                            </div>
+                            <div class='row'  >
+                                <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left search-btn-custom'>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="search_driver()">{{'Search' | translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-right" >
+                <!-- <div class="time-panel-root">
+                        <div class="time-panel hour-segment" trace-point='0'>
+                            <div *ngFor="let item of timeFarame" class="time-frame" [ngStyle]="{'width':getTimeSlotWidth()}">
+                                    {{ item.FormatterHour }}
+                            </div> 
+                        </div>  
+                        <div class="timer-pointer" actual-margin-left="0"  appTimer></div> 
+                </div> -->
+
+                <div class="time-panel hour-segment" trace-point='0' zoom-enable='false'>
+                    <div style="width:100%; height:100% ">
+                            <div *ngFor="let item of timeFarame" class="time-frame" [ngStyle]="{'width':getTimeSlotWidth()}"  >
+
+                                <label *ngIf="dataService.viewFormat==='hour'">{{ item.FormatterHour}}</label>
+                                <a *ngIf="dataService.viewFormat!=='hour'" style='cursor:pointer' (click)='set_selected_date($event, item.CurrentDate)'>{{item.FormattedDate}}</a>
+                            </div>
+                    </div>
+                   
+                    <div *ngIf="dataService.getHourFormat()===12" class='time-traverse' (click)="timeTraverse()">
+                        <span *ngIf='dataService.IsAnteMerediem'>
+                            <img  src="{{dataService.getIcon()['RightArrow']}}" class="time-traverse-arrow"/>
+                        </span>
+                        <span *ngIf='!dataService.IsAnteMerediem'>
+                            <img  src="{{dataService.getIcon()['LeftArrow']}}" class="time-traverse-arrow"/>
+                        </span>
+                    </div>
+                    <!-- <div class="timer-pointer" actual-margin-left="0"  appTimer></div>   -->
+                </div>
+
+                <div id='timer-pointer-line' class="timer-pointer" actual-margin-left="0"  appTimer zoom-enable='false'></div>  
+            </div>
+        </div>
+    
+        <app-vehicle *ngIf="!IsDriverView"></app-vehicle>
+        <app-driver *ngIf="IsDriverView"></app-driver>
+    </div>
+    <div class='panel-block'> 
+    </div>
+    <div class='panel-unplanned'>
+            <app-customer></app-customer>
+    </div>
+    <div class="custom-border panel-color-legend" style="padding-top:5px;">
+        <div *ngFor="let item of legends" style="float:left">
+                <div class="legend-icon" >
+                        <svg *ngIf="!item.HasIcon" height="15" width="15">
+                                <circle cx="7.5" cy="7.5" r="7.5"  stroke-width="3" [attr.fill]="item.Color" />
+                        </svg> 
+                        <span *ngIf="item.Name=='Bus rent'" >
+                            <div class="btn-search-mode"><img  src="{{dataService.getIcon()['CarKey']}}" (click)='setFilterToggle()'/></div>
+                        </span>
+                        <span *ngIf="item.Name=='External driver'" >
+                            <div class="btn-search-mode"><img  src="{{dataService.getIcon()['ExtDriver']}}" (click)='setFilterToggle()'/></div>
+                        </span>
+                        <span *ngIf="item.Name=='Airport trip'" >
+                            <div class="btn-search-mode"><img  src="{{dataService.getIcon()['Aeroplane']}}" (click)='setFilterToggle()'/></div>
+                        </span>
+                </div>
+                <div class="legend-label">
+                        <span i18n>{{item.Name | uppercase}}</span>
+                </div>
+        </div>
+        <div *ngFor="let item of status_color" style="float:left">
+                <div class="legend-bar" [ngStyle]="{ 'background': dataService.getStripBackground(135,item.Color) }" >
+                </div>
+                <div class="legend-label">
+                        <span>{{item.Name | uppercase}}</span>
+                </div>
+        </div>
+    </div>
+    <!--     
+    <div id='region-custom-scroll' class='scroll-region'>
+        <div class="custom-scrollbar" (scroll)='time_panel_shift_scroll($event)' client-scroll='true'>
+            <div class="custom-scrollbar-thumb">
+            </div>
+        </div>
+    </div> 
+    -->
+</div>
+
+
+
+
+
+

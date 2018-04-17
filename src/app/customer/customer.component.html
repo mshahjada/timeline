@@ -1,0 +1,97 @@
+
+<div class="row panel-timeline-header custom-border">
+    <div class="panel-left row" style="border-right:1px solid grey; height:100%;" [ngStyle]="{'margin-left': getCusTripLeft()}">
+        <div class="region-divider">
+                <div class="btn-search-mode">
+                        <img  src="{{dataService.getIcon()['ArrowUpDeactive']}}" class="icon-top" (click)="setFilterToggle($event, false)"/>
+                        <img  src="{{dataService.getIcon()['ArrowDownActive']}}" class="icon-bottom" (click)="setFilterToggle($event, true)"/>
+                        <span style="text-overflow: ellipsis; white-space: nowrap; ">{{FilterType}}</span>
+                </div>   
+        </div>
+        <div class="region-divider">
+                <div class="btn-search-mode">
+                  <img  src="{{dataService.getIcon()['User']}}" />
+                </div>
+        </div>
+    </div>
+    <div class="panel-right text-left " style="height:100%;">
+            <span>
+                <span class="btn-search-mode filter-region-customer custom-picker popup-selection" (click)='showTripType($event)'>
+                        {{'Trip Type' | translate}} <img  class="popup-selection" src="{{dataService.getIcon()['DownArrow']}}" />     
+                </span>
+                <div id='tripTypePopUp' class="custom-popup trip-type-popup section-secondary" style="display:none">
+                        <div class='row'  >
+                                <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left' *ngFor="let item of dataService.getTripTypes()">
+                                        <input type="checkbox" [checked]="true"  attr.triptype={{item.id}}/> <span>{{item.name}}</span>
+                                </div>
+                        </div>
+                </div>
+            </span>
+        
+            <span>
+                <div id='timeDurationPopUp' class="custom-popup time-duration-popup section-secondary" style="display:none">
+                        <div class='row'  >
+                                <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left'>
+                                        <div id='timetracker' class='range-tricker' min='0' attr.max={{dataService.getHourFormat()}} move-active='false' rangefrom='0' rangeto='0'>
+                                                <div class='track-range'></div>
+                                                <a class="track-pointer min" (mousedown)='mousedownmin($event)' title="0"></a>
+                                                <a class="track-pointer max" (mousedown)='mousedownmax($event)' title="0"></a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <span class="btn-search-mode filter-region-customer custom-picker popup-selection" (click)='showTimeDuration($event)'>
+                        {{ 'Trip Duration' | translate }} <img class="popup-selection"  src="{{dataService.getIcon()['DownArrow']}}" />
+                </span>
+            </span>
+            
+            <div class="search-box-img"> 
+                    <!-- filtertrip -->
+                <img  class="btn-search-mode" src="{{dataService.getIcon()['Search']}}" />
+                <input type="text" [(ngModel)]='dataService.up_trip_no' placeholder="search trip...." />
+            </div>
+            <div class="search-box-img">
+                <img  class="btn-search-mode" src="{{dataService.getIcon()['Search']}}" />
+                <input type="text" [(ngModel)]='dataService.up_cus_name' placeholder="search customer...." />
+            </div>
+
+            <div class="search-box-img">
+                <img  class="btn-search-mode" src="{{dataService.getIcon()['Search']}}" />
+                <input type="text" [(ngModel)]='dataService.up_shift_name' placeholder="search shift..." />
+            </div>
+           
+            <span class="btn-search-mode global-search search-btn-custom">
+                <button type="button" class="btn btn-sm btn-outline-primary" (click)="search()">{{'Search' | translate}}</button>
+            </span>
+    </div>
+</div>
+
+<div id='{{type}}-trip-timeline' class="panel-customer-timeline" appTripdrop attr.typedef={{type}}>
+    <div *ngFor="let item of (dataService.getTripInfos() | filter:['customer_name', dataService.up_cus_name] | filter:['name', dataService.up_trip_no] |  filter:['shift', dataService.up_shift_name] | orderBy: getFilterProperty())"  class="row grid-row">
+        <div class="panel-left" style="border-right:1px solid grey">
+                <div class="row text-left "> 
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-left grid-cell-padding" > <p class="highlight-text">{{item.customer_name}}</p> <p class="text-shadow">{{item.name}} {{ (item.trip_type !="FIXED")? '' : '|| '+ item.shift}}</p></div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right grid-cell-padding">{{item.pax}}</div>
+                </div>
+        </div>
+        <div class="panel-right trip-keeper time-line-trip">
+                <div class="time-panel" [ngStyle]="{'width': dataService.getZoomWidth(), 'margin-left': dataService.getZoomLeft()}">
+                        <div appTripdrag draggable="true" class="region-trip"  attr.typedef={{type}} attr.refid={{item.customer_id}} attr.tripid={{item.trip_id}} attr.status={{item.status}}
+                        id="{{type}}-trip-{{item.customer_id}}-{{item.trip_id}}" 
+                        [ngStyle]="{'left':dataService.getStartPos(null, item.time_b2), 'width': dataService.getTripWidth(type, null, item.time_b2, item.time_c1, null),  'background-color': '#727272'}"
+                        (click)="getTripInfo($event)" (mouseenter)='showPanel($event)' (mouseleave)='hidePanel()'>
+                                <div *ngIf="item.vehicle_id>0" class="trip-img" > <img  src="{{dataService.getIcon()['Vehicle']}}" /> </div>
+                                <div *ngIf="item.driver_id>0" class="trip-img" > <img  src="{{dataService.getIcon()['Driver']}}" /> </div>
+                                <div class="row">
+                                        f: {{item.loc_from}}
+                                </div>
+                                <div class="row">
+                                        t: {{item.loc_to}}
+                                </div>
+                        </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+

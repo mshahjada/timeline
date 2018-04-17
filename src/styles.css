@@ -1,0 +1,1086 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+body {
+    font-family: "Maison Neue Light";
+    font-size: 12px;
+    line-height: 1.66667;
+    background-color: #f4f6f8;
+}
+.time-line{
+    background-color:#ccc;
+    height: 100vh;
+
+}
+
+
+.time-line .panel-timeline{
+    height: 100%;
+}
+
+.time-line .row{
+    margin-right: 0px; 
+    margin-left: 0px; 
+}
+
+.time-line .custom-border{
+   border: 1px solid lightgrey;
+}
+
+.time-line .panel-top-header{
+    height: 25px;
+    /* border-bottom: 1px solid lightgrey; */
+    margin-right: 0px; 
+    margin-left: 0px; 
+    font-size: 14px;
+    width: 100%;
+}
+
+.time-line .panel-top-header .region-time-format a{
+   color: gray;
+   text-decoration: none;
+}
+
+.time-line .panel-top-header .region-time-format .active{
+    /* color:#15A3F9; */
+    color: #45a7f5;
+ }
+
+ .time-line .region-settings{
+     margin-left: 20px;
+     margin-right: 20px;
+ }
+
+ .time-line .region-settings img{
+    height:22px;
+    margin-top:-3px 
+ }
+
+
+ .panel-timeline-header{
+    border-bottom: 1px solid lightgrey;
+    margin-right: 0px; 
+    margin-left: 0px; 
+    height: 25px;
+    font-size: 10px;
+    width: 100%;
+}
+
+.time-line #settingsPopUp{
+    right: 2px;
+}
+
+
+#settingsPopUp:after{
+   content: "";
+   position: absolute;
+   right: -10px;
+   top: 2px;
+   width: 0;
+   height: 10px;
+   box-sizing: border-box;
+   border-top: 0px solid black;
+   border-right: 15px solid black;
+   border-bottom: 15px solid black;
+   border-left: 0px solid black;
+   border-color: transparent transparent #fff #fff;
+   -webkit-transform-origin: 0 0;
+   transform-origin: 0 0;
+   -webkit-transform: rotate(135deg);
+   transform: rotate(135deg);
+   box-shadow: -3px 3px 3px 1px #eee;
+   z-index: 1000;
+}
+
+/*---------------- Customized-----------------*/
+
+.time-line .custom-strip{
+    background:
+    repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 1px,#ccc 3px,#ccc 2px
+      ),
+      linear-gradient(
+        to bottom,
+        #eee,
+        red
+      );
+}
+
+.time-line .text-shadow, .modal-dialog .text-shadow{
+    color: #858585;
+}
+
+.time-line .text-white, .modal-dialog .text-white{
+    color:white;
+}
+
+.time-line .highlight-info, .modal-dialog .highlight-info{
+    color: #33C7FF;
+}
+
+.time-line .highlight-text, .modal-dialog .highlight-text{
+    font-weight: bold;
+    color:#696969;
+}
+
+.modal-dialog  .modal-pax-label label{
+    margin-top: 2px;
+}
+
+.modal-dialog .text-dg-height{
+    font-size: 14px;
+}
+
+/*-----------------Time Panel/ Frame-----------*/
+
+.panel-planned{
+    border-radius: 15px;
+    height: 60%;
+    background-color:white;
+}
+
+.panel-block{
+    height: 10px;
+    border-radius: 10px;
+    background-color:#ccc;
+    display: block;
+}
+
+.panel-unplanned{
+    height: calc(40% - 41px);
+    border-radius: 15px;
+    background-color:white;
+}
+
+.panel-timeline-planed{
+    height: calc(100% - 60px);
+    overflow-y:auto;
+    overflow-x:hidden;
+    font-size: 10px;
+    /* width: 100%; */
+    /* border: 1px solid #4EAFF2; */
+}
+
+.time-line .time-frame{
+    float:left; 
+    border-left: 1px solid lightgrey; 
+    height:100%;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.time-line .time-traverse{
+    right: 0;
+    position: fixed;
+    margin-top: -24px;
+    cursor: pointer;
+    font-size: 14px;
+    background: white;
+    font-weight: bold;
+    color: #007bff;
+    
+}
+
+.panel-timeline-planed:not(.panel-left){
+    cursor: pointer;
+}
+
+.panel-customer-timeline:not(.panel-left){
+    cursor: pointer;
+}
+
+.panel-timeline-planed .panel-left{
+    cursor: auto;
+}
+
+.panel-customer-timeline .panel-left{
+    cursor: auto;
+}
+
+
+.time-line .time-traverse-arrow{
+    height: 20px;
+}
+
+
+.time-line .driver-info-link{
+    text-decoration: none;
+    color: #696969;
+}
+/*-----------------Customer Unplaned Trip Time line-----------*/
+
+.time-line .panel-unplanned .panel-customer-timeline{
+    height: calc(100% - 25px);
+    overflow-y:auto;
+    overflow-x:hidden;
+    font-size: 10px;
+    width: 100%;
+}
+
+.time-line .filter-region-customer{
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.time-line .filter-region-customer img{
+    height: 22px;
+}
+
+/*---------------Color Legend Portion----------------*/
+
+.time-line .panel-color-legend{
+    height: 30px; 
+    background-color: whitesmoke;
+    width: 100%;
+}
+
+.time-line .legend-icon{
+    float: left;
+}
+
+.time-line .legend-label{
+    float: left;
+    padding-left: 2px;
+    padding-right: 10px;
+    font-size: 10px;
+    margin-top: 1px;
+}
+
+.time-line .legend-icon img{
+    margin-top: -6px;
+}
+
+.time-line .legend-bar{
+    float: left;
+    margin-top: 6px;
+    padding-left: 5px;
+    padding-right: 10px;
+    font-size: 12px;
+    width: 20px;
+    height: 4px;
+}
+
+
+/*-----------------Common Property---------------*/
+
+.time-line .panel-left{
+    float: left;
+    width:12%;
+    text-align: center;
+    height: 100%;
+    position: relative;
+}
+
+.time-line .panel-right{
+    float: left;
+    width:88%;
+    text-align: center;
+    height: 100%;
+    /* position: relative; */
+   
+}
+
+.time-line .grid-row{
+    border-bottom: 1px solid lightgrey;
+    margin-right: 0px; 
+    margin-left: 0px; 
+    height: 30px;
+    font-size: 10px;
+}
+
+.time-line .grid-row .row{
+    margin-right: 0px; 
+    margin-left: 0px; 
+}
+
+.time-line .row .grid-cell-padding{
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.time-line .row .grid-cell-padding p{
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.time-line .row .init-flex{
+    flex-wrap: initial;
+}
+.driver-info {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.region-divider{
+    float:left;
+    width:50%
+}
+
+.region-divider-left{
+    float:left; 
+    width:44%;
+    /* width:68% */
+}
+.region-divider-right{
+    float:left;
+    /* width:30%; */
+    width:55%;
+    margin-left:1%;
+}
+
+.region-divider-right input{
+    width:100%;
+}
+
+.modal.fade.show .modal-dialog .row .row{
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+
+
+/* ------------ Custom button---------------*/
+.time-line .btn-search-mode{
+    height: 25px;
+    border-radius: 2px;
+}
+.time-line .btn-custom-mode{
+    height: 25px;;
+    width: 100%;
+    border-right: 1px solid lightgrey;
+    margin-right: 1px;
+    border-radius: 2px;
+}
+.time-line .btn-custom-mode img, .btn-search-mode img{
+    /* margin-top: -4px; */
+    height: 22px;
+    width: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+}
+.time-line .gylphIcon-Color{
+    float: left;
+    color:#15C9F9;
+    font-size: 15px;
+    padding-right: 5px;
+}
+.time-line .btn-custom-mode, .btn-search-mode img:hover{
+    cursor: pointer;
+}
+
+.time-line .calendar-icon img{
+    height: 18px;
+    margin-bottom: 3px;
+    width:36px;
+}
+
+.time-line .filter-icon img{
+    width: 36px;
+    margin-top: -3px;
+}
+
+
+.btn-search-mode .icon-top{
+    margin-top: -14px;
+}
+.btn-search-mode .icon-bottom{
+    margin-left: -31px;
+    margin-top: 6px;
+}
+/* ------------ Custom View---------------*/
+
+.time-line .time-bar{
+    width:100%;
+    /* height: 87vh; */
+    /* position: relative; */
+}
+
+.time-line .timer-pointer, .time-line .timer-trace{
+    z-index: 1;
+    width:1px;
+    height: calc(100% - 90px);
+    /* height: 100%; */
+    border: 1px solid grey;
+    position: absolute;
+    background-color: grey;
+}
+
+.time-line .timer-trace{
+    border-left: 1px solid grey;
+    height: 100%;
+}
+
+.time-line .timer-pointer::after{
+    position: absolute;
+    top: -8px;
+    left: -4px;
+    content: "";
+    width: 8px;
+    height: 8px;
+    border: 1px solid #c5c5c5;
+    border-radius: 50%;
+}
+
+
+/* .time-line .hour-segment{
+    width:100%;
+    height: 100%;
+    position: relative;
+} */
+
+.time-line .time-panel{
+    width:100%;
+    height: 100%;
+    position: relative;
+    left:-1px;
+}
+
+.time-line .time-panel .region-notify{
+    float: left;
+    height: 3px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.time-line .time-panel .region-trip{
+    float: left;
+    border-radius: 2px;
+    margin-top:2px;
+    height: 27px;
+    /* border: 1px solid lightgrey; */
+    text-align: left;
+    /* padding-left: 2px; */
+    position: absolute;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform .3s;
+}
+
+
+.time-line .panel-timeline-header .panel-right{
+    overflow: hidden;
+}
+
+.time-line .panel-timeline-planed .panel-right{
+    overflow-x: hidden;
+}
+
+/* .panel-timeline-planed .timer-pointer{
+    height: 55vh;
+} */
+
+.time-line .panel-customer-timeline .panel-right{
+    overflow-x: hidden;
+}
+
+/* .region-trip:hover{
+    -ms-transform: scale(3.5,1); 
+    -webkit-transform: scale(3.5,1);
+    transform: scale(3.5,1); 
+} */
+.time-line .region-trip .row{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 13px;
+    color: #fff;
+    margin-left: 3px; 
+    margin-right: 3px;
+}
+
+.time-line .image-circular{
+    border-radius: 3px;
+}
+
+.time-line .driver-img{
+    float: left;
+    margin-left: 5px;
+}
+
+.time-line .driver-img img{
+    margin-top: 2px;
+    height: 25px;
+    width: 25px;
+    overflow: hidden;
+}
+
+.time-line .driver-info{
+    float: left;
+    text-align: left;
+    margin-left: 2px;
+    /* margin-top: 6px; */
+}
+
+.time-line .trip-img{
+    float: left;
+    z-index: 1;
+    position: absolute;
+}
+
+
+.time-line .trip-img img{
+    margin-top: 3px;
+    height: 20px;
+    width: 20px;
+    overflow: hidden;
+}
+
+.time-line .airport-trip{
+    float: left;
+    padding-left: calc(100% - 20px);
+    right: 0;
+    z-index: 1;
+    position: absolute;
+}
+
+.time-line .airport-trip img{
+   float: right;
+   margin-top: 3px;
+   height: 22px;
+   width: 26px;
+   overflow: hidden;
+}
+
+.time-line .trip-info{
+    float: left;
+    text-align: left;
+    /* margin-left: 2px; */
+}
+
+.time-line .trip-info .row{
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}
+
+.time-line .input-filter{
+    height:20px;
+    margin-top: -3px;
+}
+
+
+
+/* ------------ Custom Trip Popup ---------------*/
+
+.time-line hr{
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+.time-line .custom-popup{
+    font-size: 11px;
+    height:150px;
+    width:300px; 
+    background-color:whitesmoke;
+    z-index: 999;
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid lightgrey;
+}
+
+
+
+
+.time-line .custom-popup-header{
+    background-color:#15A3F9;
+}
+
+.time-line .custom-trip-popup .row{
+    padding-top: 3px;
+    padding-bottom: 3px
+}
+
+.custom-popup .section-info{
+    width:100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.custom-popup .section-header-label{
+    width:100%;
+}
+
+.custom-popup .section-label{
+    width:40%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 16px;
+    float: left;
+}
+
+.custom-popup .section-date{
+    width:60%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 16px;
+    float: left;
+}
+
+.time-line .vehicle-type-popup{
+    height: auto;
+    margin-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    width: 325px;
+}
+
+.time-line .driver-type-popup{
+    width: 325px;
+    margin-left:20px;
+}
+
+.vehicle-type-popup .vehicle-popup-row-resize {
+    padding-left: 10px;
+    padding-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.driver-type-popup .driver-popup-row-resize{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.time-line .trip-type-popup{
+    height: auto;
+    width: 160px;
+    padding-bottom: 7px;
+}
+.time-line .trip-type-popup .row{
+    padding-top:10px;
+}
+
+.time-line .time-duration-popup{
+    height: 30px;
+    width:250px; 
+}
+.time-line .time-duration-popup .duration-len{
+    height: 10px;
+    background-color: grey;
+    margin-top: 6px;
+    border-radius: 3px;
+}
+
+
+.custom-popup .custom-text-seach-box{
+    width: 100%;
+    border:1px solid lightgrey;
+    border-radius:20px;
+    text-indent: 10px;
+    -moz-border-radius:25px; 
+    -moz-box-shadow:    1px 1px 1px #ccc;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+
+.custom-popup .btn-sm{
+    padding: 0.09rem .5rem;
+    width: 100%;
+}
+
+
+.global-search .btn-sm {
+    padding: 0rem .8rem;
+    font-size: 13px;
+    margin-top: -12px;
+}
+
+.search-btn-custom .btn-sm:hover {
+    background-color: #54a7f5;
+}
+
+.search-btn-custom .btn-outline-primary {
+    border-color:#54a7f5;
+}
+
+
+#periodical-popup .section-label{
+    width:25%;
+}
+
+#periodical-popup .section-date{
+    width:75%;
+}
+
+#periodical-popup.custom-popup{
+    width:200px;
+}
+
+
+
+/*------------- Range Selection Slider -------------------*/
+
+.time-line .range-tricker{
+    position: relative;
+    height: 10px;
+    background-color:#d8d8d8;
+    margin-top: 6px;
+    border-radius: 3px;
+}
+
+.time-line .range-tricker .track-range{
+    position: absolute;
+    z-index: 1;
+    display: block;
+    height: 100%;
+    background-color: #54a7f5;
+}
+
+.time-line .range-tricker .track-pointer {
+    position: absolute;
+    z-index: 2;
+    width: 5px;
+    height: 14px;
+    background-color: #9dcacd;
+    cursor: pointer;
+  }
+
+
+  .track-pointer {
+    top: -2px;
+    margin-left: 0;
+  }
+
+
+/* ------------ Bootstrap Modal Customize ---------------*/
+.modal.show .modal-dialog{
+    font-size: 12px;
+    width: 350px;
+}
+
+.modal-dialog .modal-header{
+    background-color:#15A3F9;
+    padding-top: 3px;
+    padding-bottom: 3px
+}
+
+.modal-dialog .modal-body{
+    padding-top:5px;
+}
+
+.modal-dialog .modal-footer .row{
+    width:100%;
+}
+.modal-dialog .modal-footer .row div{
+    text-align: center;
+}
+
+.modal-dialog label{
+    margin-bottom: 0px;
+}
+
+
+
+.modal-dialog .row img{
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+
+}
+
+.modal-dialog select{
+    color: #15A3F9;
+    border:none;
+    margin-left: -4px;
+}
+
+.modal-dialog select:focus {
+    color: #15A3F9;
+    border:none;
+    box-shadow: 0 0 0 0.2rem white;
+}
+
+.modal-dialog select option{
+    color: #15A3F9;
+    border:none;
+}
+
+.modal-dialog .form-control{
+    font-size: 12px;
+    padding: 3px 3px 3px 3px;
+}
+
+.modal-dialog .row{
+     margin-top:3px;
+     margin-bottom:3px;
+}
+
+
+.modal-dialog .row-styler{
+    background-color: #F4F6F8;
+    padding: 4px 0;
+}
+
+.modal-dialog .modal-header .close{
+    padding: 0px; 
+    margin: 0px 20px 0px auto;
+}
+
+
+.modal-dialog .modal-footer {
+    padding-top: 3px;
+    padding-bottom: 0px;
+    display: block;
+    border-top: none;
+}
+.modal-dialog .message-icon{
+    height:60px;
+    margin-bottom: 15px;
+}
+
+.message-icon img{
+    margin-left:-25px;
+}
+
+.modal-content > app-message{
+    width:350px;
+}
+
+.modal-content > app-tripmodal-content{
+    width:470px;
+}
+
+/*------------- Airport Mail Modal -------------*/
+.modal-dialog .mail-modal{
+    height: 34px;
+    text-align: center;
+    padding-top: 6px;
+    background-color:#e1e5e8;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.modal-dialog .row input[type='radio']{
+    margin-top: 3px;
+    margin-right: 6px;
+}
+
+
+.modal-dialog .modal-content{
+    display: inline-flex;
+}
+
+.modal-content > app-air-mail-content{
+    width:500px;
+}
+
+.modal-dialog .row .flight-label{
+    padding-bottom: 3px;
+}
+
+
+/*---------------Ngb Date Picker----------*/
+
+.ngbdatepicker{
+    padding-left: 44%;
+}
+.ngbdatepicker .rounded {
+    margin-top: 23px;
+    margin-left: 43%;
+}
+
+.ngbdatepicker .date-view-text{
+    width:210px;
+}
+
+
+/* ------------ Custom Scroll ---------------*/
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: #4fa5f8; 
+     /* #0ae; */
+	
+	background-image: -webkit-gradient(linear, 0 0, 0 100%,
+	                   color-stop(.5, rgba(255, 255, 255, .2)),
+					   color-stop(.5, transparent), to(transparent));
+}
+
+
+
+/*--------------------Custom Scroller---------------*/
+.time-line .scroll-region{
+    margin-left: 15%;
+    width:85%;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    margin-top: -6px;
+}
+.time-line .custom-scrollbar{
+    width: 100%;
+    background-color: #F5F5F5;
+    /* background-color:yellow; */
+    overflow-x:auto;
+    overflow-y: hidden;
+}
+
+.time-line .custom-scrollbar-thumb{
+    background-color: #0ae;
+    height: 1px;
+    width: 100%;
+}
+
+
+/*--------------------------Un planed Trip-------------------*/
+.time-line .trip-row{
+    height: 30px;
+    /* position: relative; */
+}
+.time-line .panel-unplaned-trip-region{
+    height: 29vh;
+    width: 100%;
+    overflow-y:hidden;
+}
+
+.time-line .panel-unplaned-trip-region .panel-unplaned-trip{
+    font-size: 10px;
+    width: 100%;
+    overflow-x:auto;
+    /* margin-left: 15%; */
+    height: 100%;
+    overflow-y:auto;
+}
+
+
+.time-line .panel-unplaned-trip .panel-left{
+    width:15%; 
+    /* left:0;
+    top:auto; */
+    height: 30px;
+    float: left;
+
+}
+
+.time-line .panel-unplaned-trip  .panel-right{
+    float: left;
+    width: 85%;
+    text-align: center;
+    height: 30px;
+
+}
+
+.time-line .search-box-img{
+    display: inline-block;
+}
+
+.search-box-img{
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 1px 5px;
+    height: 21px;
+}
+
+.time-line .search-box-img img{
+    width: 16px;
+    height: 16px;
+}
+.search-box-img input{
+    border: none;
+    background: transparent;
+    padding-left: 5px;
+    line-height: 14px;
+}
+
+.search-box-img input:focus{
+    outline: none;
+}
+
+
+/*----------js loader---------*/
+
+.time-line .loader {
+    margin-top:20px;
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 5s linear infinite; /* Safari */
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
+/*--------Over lay Css ---------*/
+
+.time-line .overlay-panel{
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0); /* rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
+  .time-line .loader-gif{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    
+  }
+
+
+  /*---------------Main Css For Base UI----------*/
+  input[type="radio"], input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+
+
+/*------------------------*/
+@media only screen and (max-width: 768px){
+    .panel-top-header {
+        font-size: 12px;
+    }
+
+    .legend-label {
+        float: left;
+        padding-left: 3px;
+        padding-right: 6px;
+        font-size: 12px;
+    }
+}
+

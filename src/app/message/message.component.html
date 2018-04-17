@@ -1,0 +1,40 @@
+
+  <div class="modal-body">
+    <div class='row message-icon'>
+      <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center'>
+      </div>
+      <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center'>
+          <div *ngIf="modalObj.ViewType === 'loader'" class="loader"></div>
+          <div *ngIf="modalObj.ViewType === 'error'">
+              <img  src="{{ propertyImg['Error'] }}" />
+          </div>
+          <div *ngIf="modalObj.ViewType === 'success'">
+              <img  src="{{ propertyImg['Success'] }}" />
+          </div>
+          <div *ngIf="modalObj.ViewType === 'warning' || modalObj.ViewType === 'decision'">
+              <img  src="{{ propertyImg['Warning'] }}" />
+          </div>
+      </div>
+      <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center'>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div *ngIf="modalObj.plainText != ''" class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center'>
+          <span>{{modalObj['PlainText'] | translate}}</span> 
+      </div>
+      <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center' *ngFor="let error of modalObj.MessageList">
+          <span>{{error | translate}}</span> 
+      </div>
+      <div *ngIf="modalObj.ViewType === 'decision'" class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center'>
+          <h6><span>{{ modalObj['Decision'] | translate }}?</span></h6>
+      </div>
+    </div>
+    <div class='row'>
+        <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right'>
+            <button *ngIf="modalObj.ViewType === 'decision'" type="button" class="btn btn-sm btn-outline-primary" (click)="activeModal.close('proceed')"> {{modalObj['OkText'] | translate}}  </button>
+            <button type="button" class="btn btn-sm btn-outline-primary" (click)="activeModal.close('close')"> {{modalObj['CloseText']  | translate}} </button>
+        </div>
+      </div>
+    
+  </div>

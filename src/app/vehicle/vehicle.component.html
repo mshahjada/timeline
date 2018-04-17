@@ -1,0 +1,42 @@
+
+<div id="{{type}}-trip-timeline" class="panel-timeline-planed " (mousedown)="panel_move_active($event)" (mouseup)="panel_move_deactive($event)" (mouseout)="panel_out_deactive($event)">
+        <div id="{{type}}-trip-row-{{item.vehicle_id}}" appTripdrop attr.typedef={{type}} *ngFor="let item of (dataService.getVehicleTrips()  | filter:['garage', dataService.garage_loc] | filter:['name', dataService.getVehicleFilter()] | orderBy: dataService.getVehicleFilterProperty()); let count=index" 
+        class="row grid-row" attr.vehicle-id={{item.vehicle_id}}>
+                <div class="panel-left" style="border-right:1px solid lightgrey">
+                        <div class="row text-left"> 
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-left grid-cell-padding" > <p class="highlight-text">#{{item.code}}</p> <p class="text-shadow">{{item.name}}</p></div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right grid-cell-padding">  
+                                <p class="highlight-text">{{item.max_capacity}} </p> 
+                                <p class="text-shadow">{{item.garage}}</p>
+                        </div>
+                        </div>
+                </div>
+                <div class="panel-right time-line-trip"> 
+                        <div class="time-panel" [ngStyle]="{'width': dataService.getZoomWidth(), 'margin-left': dataService.getZoomLeft()}">
+                               
+                                <div class="region-notify"  *ngFor="let period_maintain of item.maintenance_periods" (mouseenter)='show_activity($event, period_maintain, "Maintenance")' (mouseleave)='hide_activity()'
+                                [ngStyle]="{ 'background': dataService.getStripBackground(135,dataService.getColorCode()['magenta']), 'left':dataService.notifyRegionStart(period_maintain.start), 'width': dataService.notifyRegionWidth(type, period_maintain.start, period_maintain.end)}"></div>
+        
+                                 <div appTripdrag draggable='true' class="region-trip" attr.typedef={{type}} attr.color={{trip.color}}  attr.refid={{item.vehicle_id}} attr.tripid={{trip.trip_id}} attr.status={{trip.status}}
+                                *ngFor="let trip of item.trips" id="{{type}}-trip-{{item.vehicle_id}}-{{trip.trip_id}}" 
+                                        [ngStyle]="{ 'left':dataService.getStartPos(trip.time_a, trip.time_b2), 'width': dataService.getTripWidth(type ,trip.time_a, trip.time_b2, trip.time_c1, trip.time_d)}"
+                                        (click)="getTripInfo($event)" (mouseenter)='showPanel($event)' (mouseleave)='hidePanel()'>
+                                        <div *ngIf="trip.driver_id>0" attr.da={{trip.driver_id}} class="trip-img" > <img  src="{{trip.image_path}}" /> </div>
+                                        <div *ngIf='trip.time_a!==null' [ngStyle]="{ 'float':'left', 'height':'100%', 'width': dataService.getTripStripWidth(true, trip.time_a, trip.time_b2, trip.time_c1, trip.time_d),  'background': dataService.getStripBackground(45,trip.color)}"></div>
+                                        <!-- [ngStyle]= "{'width': trip.image_path!==null ? 'calc(100% - 40px)' : ''}" -->
+                                        <div class="trip-info" [ngStyle]="{ 'height':'100%', 'width': dataService.getTripSolidWidth(trip.time_a, trip.time_b2, trip.time_c1, trip.time_d), 'background-color':trip.color}" >
+                                                <div class="row">
+                                                        f: {{trip.loc_from}}
+                                                </div>
+                                                <div class="row">
+                                                        t: {{trip.loc_to}}
+                                                </div>
+                                        </div>
+                                        <div *ngIf="trip.trip_type==='AIRPORT'" class="airport-trip"> <img  (click)='airportNotifier($event)' src="{{dataService.getAirportSymbol(trip.airport_mail_sent)}}"/> </div>
+                                        <div *ngIf='trip.time_d!==null' [ngStyle]="{'float':'left', 'height':'100%', 'width': dataService.getTripStripWidth(false, trip.time_a, trip.time_b2, trip.time_c1, trip.time_d), 'background': dataService.getStripBackground(45,trip.color)}"></div>
+                                </div>
+                               
+                        </div>
+                </div>
+        </div>
+</div>
